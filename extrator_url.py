@@ -1,9 +1,10 @@
+import re
+
 class Extrator_URL:
 
     def __init__(self, url):
         self.url = self.sanitiza_url(url)
         self.valida_url()
-        self.get_url_base()
 
     def sanitiza_url(self, url):
         if type(url) == str:
@@ -14,14 +15,15 @@ class Extrator_URL:
     def valida_url(self):
         if not self.url:
             raise ValueError("A URL está vazia")
-        if not self.url.startswith("http"):
-            raise ValueError("Página Inválida")
+
+        padrao_url = re.compile('(http(s)?://)?(www.)?rogerbank.com(.br)?/cambio')
+        match = padrao_url.match(self.url)
+        if not match:
+            raise ValueError('A URL não é válida')
 
     def get_url_base(self):
         indice_interrogacao = self.url.find('?')
         url_base = self.url[:indice_interrogacao]
-        if not url_base.endswith("cambio"):
-            raise ValueError("Caminho Inválido")
         return url_base
 
     def get_url_parametros(self):
@@ -39,6 +41,6 @@ class Extrator_URL:
             valor = self.get_url_parametros()[indice_valor:indice_e_comercial]
         return valor
 
-extrator_url = Extrator_URL("https://rogerbank.com/cambio?moedaOrigem=real&moedaDestino=dolar&quantidade=100")
+extrator_url = Extrator_URL("http://rogerbank.com/cambio?moedaOrigem=real&moedaDestino=dolar&quantidade=100")
 valor_quantidade = extrator_url.get_valor_parametro("moedaDestino")
 print(valor_quantidade)
