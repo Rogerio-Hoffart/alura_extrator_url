@@ -41,6 +41,20 @@ class Extrator_URL:
             valor = self.get_url_parametros()[indice_valor:indice_e_comercial]
         return valor
 
-extrator_url = Extrator_URL("http://rogerbank.com/cambio?moedaOrigem=real&moedaDestino=dolar&quantidade=100")
-valor_quantidade = extrator_url.get_valor_parametro("moedaDestino")
-print(valor_quantidade)
+    def __len__(self):
+        return len(self.url)
+
+    def __str__(self):
+        return self.url + "\n" + f'Parãmetros: {self.get_url_parametros()}' + "\n" + f'URL base: {self.get_url_base()}'
+
+    def __eq__(self, other):
+       return self.url == other.url
+
+url = "http://rogerbank.com/cambio?moedaOrigem=real&moedaDestino=dolar&quantidade=100"
+extrator_url = Extrator_URL(url)
+extrator_url2 = Extrator_URL(url)
+print(f'O tamanho da URL: {len(extrator_url)}')
+print(f'URL completa: {extrator_url}')
+print(f'primeira URL é = a segunda? => {extrator_url == extrator_url2}')
+valor_quantidade = extrator_url.get_valor_parametro("quantidade")
+print(f'O valor do parâmetro quantidade é: {valor_quantidade}')
