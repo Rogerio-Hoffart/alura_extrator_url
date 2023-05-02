@@ -14,3 +14,11 @@ print(set(usuarios_data_science) | set(usuarios_machine_learning)) #União cjto
 print(set(usuarios_data_science) & set(usuarios_machine_learning)) #Intersecção cjto
 
 print(set(usuarios_data_science) - set(usuarios_machine_learning)) #Subtraçao cjto
+
+usuarios = {1,5,76,34,52,13}
+usuarios.add(17)
+print(usuarios)
+usuarios = frozenset(usuarios)
+print(type(usuarios))
+meu_texto = "Este texto é um teste para gerar um conjunto de palavras e testarmos a diferença entre lista e conjunto"
+print(set(meu_texto.split()))
