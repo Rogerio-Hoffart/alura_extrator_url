@@ -1,3 +1,18 @@
+with open("texto_manuseio.txt", "r", encoding='utf-8') as newt:
+    texto = newt.readlines()
+    texto = ''.join(texto).lower()
+    palavras = {}
+
+    for linha in texto.split():
+        #palavras.append(linha.strip())
+        #for letra in linha:
+        palavras[linha] = palavras.get(linha, 0) + 1
+
+#texto.close()
+#palavras = ' '.join(palavras)
+print(type(palavras))
+print(palavras)
+
 
 usuarios_data_science = [15, 23, 43, 56]
 usuarios_machine_learning = [13, 23, 56, 42]
@@ -35,3 +50,14 @@ for chave, valor in aparicoes.items():
     print(chave, "=", valor)
 print(["esta é a palavra {}".format(chave) for chave in aparicoes.keys()])
 print(aparicoes.get("Carlos"))
+
+novas_aparicoes = {}
+for palavra in texto.split():
+    ate_agora = novas_aparicoes.get(palavra, 0)
+    novas_aparicoes[palavra] = ate_agora + 1
+
+print(novas_aparicoes)
+
+
+
+
