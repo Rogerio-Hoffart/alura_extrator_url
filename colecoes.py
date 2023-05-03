@@ -58,6 +58,15 @@ for palavra in texto.split():
 
 print(novas_aparicoes)
 
+nome = 'Rogerio'
+iteravel = iter(nome)
+
+while True:
+    try:
+        print(next(iteravel))
+    except StopIteration:
+        break
+
 
 
 
